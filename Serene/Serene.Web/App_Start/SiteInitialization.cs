@@ -14,7 +14,8 @@
         {
             try
             {
-                SqlSettings.AutoQuotedIdentifiers = true;
+                SqlSettings.AutoQuotedIdentifiers = false;
+                SqlSettings.DefaultDialect = new FirebirdDialect();
                 Serenity.Web.CommonInitialization.Run();
 
                 var registrar = Dependency.Resolve<IDependencyRegistrar>();

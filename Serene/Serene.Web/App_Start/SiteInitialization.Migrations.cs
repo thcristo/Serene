@@ -13,9 +13,6 @@
     { 
         private static string[] databaseKeys = new[] {
             "Default"
-            //<if:Northwind>
-            , "Northwind"
-            //</if:Northwind>
         };
 
         /// <summary>
@@ -26,7 +23,8 @@
         {
             var cs = SqlConnections.GetConnectionString(databaseKey);
 
-            if (cs.Dialect.GetType() == typeof(OracleDialect))
+            var dialectType = cs.Dialect.GetType();
+            if (dialectType == typeof(OracleDialect) || dialectType == typeof(FirebirdDialect))
                 return;
 
             var cb = cs.ProviderFactory.CreateConnectionStringBuilder();
@@ -115,8 +113,12 @@
         {
             var cs = SqlConnections.GetConnectionString(databaseKey);
             var connection = cs.ConnectionString;
-
-            bool isOracle = cs.Dialect.GetType() == typeof(OracleDialect);
+            var dialectType = cs.Dialect.GetType();
+            if (dialectType == typeof(FirebirdDialect))
+            {
+                return;
+            }
+            bool isOracle = dialectType == typeof(OracleDialect);
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these lines if you want Serene migrations to run on your DB.

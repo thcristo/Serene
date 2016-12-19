@@ -40,7 +40,7 @@ namespace Serene.Common.Entities
             set { Fields.Name[this] = value; }
         }
 
-        [DisplayName("Value")]
+        [DisplayName("Value"), Column("PreferenceValue")]
         public String Value
         {
             get { return Fields.Value[this]; }

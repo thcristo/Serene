@@ -228,13 +228,18 @@ Update Exceptions
                     else
                     {
                         var count = new SqlUpdate("Exceptions")
-                            .Set("DuplicateCount", "DuplicateCount + @DuplicateCount")
+                            .SetTo("DuplicateCount", "DuplicateCount + @DuplicateCount")
                             .Where(new Criteria("[Id]").In(
                                 new SqlQuery()
                                     .From("Exceptions")
+                                    .Select("Id")
                                     .Take(1)
                                     .Where(hashMatch)))
-                                .Execute(c, ExpectedRows.Ignore);
+                            .SetParam(new Parameter("@DuplicateCount"), error.DuplicateCount)
+                            .SetParam(new Parameter("@ErrorHash"), error.ErrorHash)
+                            .SetParam(new Parameter("@ApplicationName"), error.ApplicationName)
+                            .SetParam(new Parameter("@minDate"), DateTime.UtcNow.Add(RollupThreshold.Value.Negate()))
+                            .Execute(c, ExpectedRows.Ignore);
 
                         // if we found an exception that's a duplicate, jump out
                         if (count > 0)
@@ -243,7 +248,10 @@ Update Exceptions
                                 .From("Exceptions")
                                 .Select("GUID")
                                 .Take(1)
-                                .Where(hashMatch)).First();
+                                .Where(hashMatch)
+                                .SetParam(new Parameter("@ErrorHash"), error.ErrorHash)
+                                .SetParam(new Parameter("@ApplicationName"), error.ApplicationName)
+                                .SetParam(new Parameter("@minDate"), DateTime.UtcNow.Add(RollupThreshold.Value.Negate()))).First();
 
                             return;
                         }
@@ -252,22 +260,22 @@ Update Exceptions
                     error.FullJson = error.ToJson();
 
                     c.Execute(@"
-Insert Into Exceptions ([GUID], [ApplicationName], [MachineName], [CreationDate], [Type], [IsProtected], [Host], [Url], [HTTPMethod], [IPAddress], [Source], [Message], [Detail], [StatusCode], [SQL], [FullJson], [ErrorHash], [DuplicateCount])
-Values (@GUID, @ApplicationName, @MachineName, @CreationDate, @Type, @IsProtected, @Host, @Url, @HTTPMethod, @IPAddress, @Source, @Message, @Detail, @StatusCode, @SQL, @FullJson, @ErrorHash, @DuplicateCount)",
+Insert Into Exceptions ([GUID], [ApplicationName], [MachineName], [CreationDate], [ExceptionType], [IsProtected], [Host], [Url], [HTTPMethod], [IPAddress], [Source], [ExceptionMessage], [Detail], [StatusCode], [SQL], [FullJson], [ErrorHash], [DuplicateCount])
+Values (@GUID, @ApplicationName, @MachineName, @CreationDate, @ExceptionType, @IsProtected, @Host, @Url, @HTTPMethod, @IPAddress, @Source, @ExceptionMessage, @Detail, @StatusCode, @SQL, @FullJson, @ErrorHash, @DuplicateCount)",
                         new
                         {
                             error.GUID,
                             ApplicationName = error.ApplicationName.Truncate(50),
                             MachineName = error.MachineName.Truncate(50),
                             error.CreationDate,
-                            Type = error.Type.Truncate(100),
+                            ExceptionType = error.Type.Truncate(100),
                             error.IsProtected,
                             Host = error.Host.Truncate(100),
                             Url = error.Url.Truncate(500),
                             HTTPMethod = error.HTTPMethod.Truncate(10), // this feels silly, but you never know when someone will up and go crazy with HTTP 1.2!
                             error.IPAddress,
                             Source = error.Source.Truncate(100),
-                            Message = error.Message.Truncate(1000),
+                            ExceptionMessage = error.Message.Truncate(1000),
                             error.Detail,
                             error.StatusCode,
                             error.SQL,
@@ -291,7 +299,7 @@ Values (@GUID, @ApplicationName, @MachineName, @CreationDate, @Type, @IsProtecte
             using (var c = GetConnection())
             {
                 sqlError = c.Query<Error>(@"
-Select * 
+Select ID, GUID, APPLICATIONNAME, MACHINENAME, CREATIONDATE, EXCEPTIONTYPE AS ""Type"", ISPROTECTED, HOST, URL, HTTPMETHOD, IPADDRESS, SOURCE, EXCEPTIONMESSAGE AS ""Message"", DETAIL, STATUSCODE, SQL, DELETIONDATE, FULLJSON, ERRORHASH, DUPLICATECOUNT 
   From [Exceptions] 
  Where [GUID] = @guid", new { guid }).FirstOrDefault(); // a guid won't collide, but the AppName is for security
             }
@@ -316,7 +324,7 @@ Select *
                     new SqlQuery()
                         .From("Exceptions")
                         .Take(displayCount)
-                        .Select("*")
+                        .Select(@"ID, GUID, APPLICATIONNAME, MACHINENAME, CREATIONDATE, EXCEPTIONTYPE AS ""Type"", ISPROTECTED, HOST, URL, HTTPMETHOD, IPADDRESS, SOURCE, EXCEPTIONMESSAGE AS ""Message"", DETAIL, STATUSCODE, SQL, DELETIONDATE, FULLJSON, ERRORHASH, DUPLICATECOUNT")
                         .Where(
                             new Criteria("[ApplicationName]") == applicationName.IsNullOrEmptyReturn(ApplicationName) &
                             new Criteria("[DeletionDate]").IsNull())
