@@ -37,7 +37,7 @@ namespace Serene.Administration.Repositories
                 if (newList.Contains(k))
                     continue;
 
-                new SqlDelete(fld.TableName)
+                new SqlDelete(uow.Connection.GetDialect(), fld.TableName)
                     .Where(
                         new Criteria(fld.UserId) == userID &
                         new Criteria(fld.RoleId) == k)

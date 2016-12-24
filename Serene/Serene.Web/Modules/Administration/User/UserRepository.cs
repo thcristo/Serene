@@ -88,7 +88,7 @@ namespace Serene.Administration.Repositories
             public static MyRow GetUser(IDbConnection connection, BaseCriteria filter)
             {
                 var row = new MyRow();
-                if (new SqlQuery().From(row)
+                if (new SqlQuery(connection.GetDialect()).From(row)
                     .Select(
                         fld.UserId,
                         fld.Username,

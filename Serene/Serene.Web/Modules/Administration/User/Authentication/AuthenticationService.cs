@@ -112,7 +112,7 @@
                 using (var uow = new UnitOfWork(connection))
                 {
                     var fld = UserRow.Fields;
-                    new SqlUpdate(fld.TableName)
+                    new SqlUpdate(connection.GetDialect(), fld.TableName)
                         .Set(fld.DisplayName, displayName)
                         .Set(fld.PasswordHash, hash)
                         .Set(fld.PasswordSalt, salt)

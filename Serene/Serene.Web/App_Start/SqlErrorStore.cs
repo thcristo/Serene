@@ -83,7 +83,7 @@ namespace Serene
         {
             using (var c = GetConnection())
             {
-                return new SqlUpdate("Exceptions")
+                return new SqlUpdate(c.GetDialect(), "Exceptions")
                     .Set("IsProtected", true)
                     .SetNull("DeletionDate")
                     .Where(new Criteria("[GUID]") == guid)
@@ -100,7 +100,7 @@ namespace Serene
         {
             using (var c = GetConnection())
             {
-                return new SqlUpdate("Exceptions")
+                return new SqlUpdate(c.GetDialect(),"Exceptions")
                     .Set("IsProtected", true)
                     .SetNull("DeletionDate")
                     .Where(new Criteria("[GUID]").In(guids))
@@ -117,7 +117,7 @@ namespace Serene
         {
             using (var c = GetConnection())
             {
-                return new SqlUpdate("Exceptions")
+                return new SqlUpdate(c.GetDialect(), "Exceptions")
                     .Set("DeletionDate", DateTime.UtcNow)
                     .Where(
                         new Criteria("[GUID]") == guid &
@@ -135,7 +135,7 @@ namespace Serene
         {
             using (var c = GetConnection())
             {
-                return new SqlUpdate("Exceptions")
+                return new SqlUpdate(c.GetDialect(), "Exceptions")
                     .Set("DeletionDate", DateTime.UtcNow)
                     .Where(
                         new Criteria("[GUID]").In(guids) &
@@ -154,7 +154,7 @@ namespace Serene
         {
             using (var c = GetConnection())
             {
-                return new SqlDelete("Exceptions")
+                return new SqlDelete(c.GetDialect(), "Exceptions")
                     .Where(
                         new Criteria("[GUID]") == guid &
                         new Criteria("[ApplicationName]") == ApplicationName)
@@ -170,7 +170,7 @@ namespace Serene
         {
             using (var c = GetConnection())
             {
-                return new SqlUpdate("Exceptions")
+                return new SqlUpdate(c.GetDialect(), "Exceptions")
                     .Set("DeletionDate", DateTime.UtcNow)
                     .Where(
                         new Criteria("[DeletionDate]").IsNull() &
@@ -227,10 +227,10 @@ Update Exceptions
                     }
                     else
                     {
-                        var count = new SqlUpdate("Exceptions")
+                        var count = new SqlUpdate(c.GetDialect(), "Exceptions")
                             .SetTo("DuplicateCount", "DuplicateCount + @DuplicateCount")
                             .Where(new Criteria("[Id]").In(
-                                new SqlQuery()
+                                new SqlQuery(c.GetDialect())
                                     .From("Exceptions")
                                     .Select("Id")
                                     .Take(1)
@@ -244,7 +244,7 @@ Update Exceptions
                         // if we found an exception that's a duplicate, jump out
                         if (count > 0)
                         {
-                            error.GUID = c.Query<Guid>(new SqlQuery()
+                            error.GUID = c.Query<Guid>(new SqlQuery(c.GetDialect())
                                 .From("Exceptions")
                                 .Select("GUID")
                                 .Take(1)
@@ -321,7 +321,7 @@ Select ID, GUID, APPLICATIONNAME, MACHINENAME, CREATIONDATE, EXCEPTIONTYPE AS ""
             using (var c = GetConnection())
             {
                 errors.AddRange(c.Query<Error>(
-                    new SqlQuery()
+                    new SqlQuery(c.GetDialect())
                         .From("Exceptions")
                         .Take(displayCount)
                         .Select(@"ID, GUID, APPLICATIONNAME, MACHINENAME, CREATIONDATE, EXCEPTIONTYPE AS ""Type"", ISPROTECTED, HOST, URL, HTTPMETHOD, IPADDRESS, SOURCE, EXCEPTIONMESSAGE AS ""Message"", DETAIL, STATUSCODE, SQL, DELETIONDATE, FULLJSON, ERRORHASH, DUPLICATECOUNT")
@@ -342,7 +342,7 @@ Select ID, GUID, APPLICATIONNAME, MACHINENAME, CREATIONDATE, EXCEPTIONTYPE AS ""
             using (var c = GetConnection())
             {
                 return c.Query<int>(
-                    new SqlQuery()
+                    new SqlQuery(c.GetDialect())
                         .From("Exceptions")
                         .Select("Count(*)")
                         .Where(

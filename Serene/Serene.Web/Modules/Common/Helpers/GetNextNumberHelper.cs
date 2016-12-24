@@ -12,7 +12,7 @@ namespace Serene
         {
             var prefix = request.Prefix ?? "";
 
-            var max = connection.Query<string>(new SqlQuery()
+            var max = connection.Query<string>(new SqlQuery(connection.GetDialect())
                 .From(field.Fields)
                 .Select(Sql.Max(field.Expression))
                 .Where(

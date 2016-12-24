@@ -42,7 +42,7 @@ namespace Serene.Administration.Repositories
                 if (newList.ContainsKey(k))
                     continue;
 
-                new SqlDelete(fld.TableName)
+                new SqlDelete(uow.Connection.GetDialect(), fld.TableName)
                     .Where(
                         new Criteria(fld.UserId) == userID &
                         new Criteria(fld.PermissionKey) == k)
@@ -62,7 +62,7 @@ namespace Serene.Administration.Repositories
                 }
                 else if (oldList[k] != newList[k])
                 {
-                    new SqlUpdate(fld.TableName)
+                    new SqlUpdate(uow.Connection.GetDialect(), fld.TableName)
                         .Where(
                             fld.UserId == userID &
                             fld.PermissionKey == k)
@@ -140,7 +140,7 @@ namespace Serene.Administration.Repositories
             var rp = RolePermissionRow.Fields.As("rp");
             var ur = UserRoleRow.Fields.As("ur");
 
-            var query = new SqlQuery()
+            var query = new SqlQuery(connection.GetDialect())
                 .From(rp)
                 .Select(rp.PermissionKey)
                 .Distinct(true)
