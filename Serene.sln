@@ -20,6 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Firebird", "Firebird", "{85433A3D-E978-4280-BC95-180EE1FCD3E1}"
 	ProjectSection(SolutionItems) = preProject
 		SQLScripts\Firebird\create_database.sql = SQLScripts\Firebird\create_database.sql
+		MovieTutorial.sql = MovieTutorial.sql
 	EndProjectSection
 EndProject
 Global
