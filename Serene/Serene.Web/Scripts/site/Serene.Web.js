@@ -1842,6 +1842,55 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieForm = (function (_super) {
+            __extends(MovieForm, _super);
+            function MovieForm() {
+                return _super.apply(this, arguments) || this;
+            }
+            return MovieForm;
+        }(Serenity.PrefixedContext));
+        MovieForm.formKey = 'MovieDB.Movie';
+        MovieDB.MovieForm = MovieForm;
+        [['MovieId', function () { return Serenity.IntegerEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Storyline', function () { return Serenity.StringEditor; }], ['ReleaseYear', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieRow;
+        (function (MovieRow) {
+            MovieRow.idProperty = 'MovieId';
+            MovieRow.nameProperty = 'Title';
+            MovieRow.localTextPrefix = 'MovieDB.Movie';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MovieRow.Fields || (MovieRow.Fields = {}));
+            ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime'].forEach(function (x) { return Fields[x] = x; });
+        })(MovieRow = MovieDB.MovieRow || (MovieDB.MovieRow = {}));
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieService;
+        (function (MovieService) {
+            MovieService.baseUrl = 'MovieDB/Movie';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MovieService.Methods || (MovieService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MovieService[x] = function (r, s, o) { return Q.serviceRequest(MovieService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MovieService.baseUrl + '/' + x;
+            });
+        })(MovieService = MovieDB.MovieService || (MovieDB.MovieService = {}));
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Organization;
     (function (Organization) {
         var BusinessUnitsForm = (function (_super) {
@@ -2672,5 +2721,52 @@ var Serene;
         ], SignUpPanel);
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieDialog = (function (_super) {
+            __extends(MovieDialog, _super);
+            function MovieDialog() {
+                var _this = _super.apply(this, arguments) || this;
+                _this.form = new MovieDB.MovieForm(_this.idPrefix);
+                return _this;
+            }
+            MovieDialog.prototype.getFormKey = function () { return MovieDB.MovieForm.formKey; };
+            MovieDialog.prototype.getIdProperty = function () { return MovieDB.MovieRow.idProperty; };
+            MovieDialog.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
+            MovieDialog.prototype.getNameProperty = function () { return MovieDB.MovieRow.nameProperty; };
+            MovieDialog.prototype.getService = function () { return MovieDB.MovieService.baseUrl; };
+            return MovieDialog;
+        }(Serenity.EntityDialog));
+        MovieDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], MovieDialog);
+        MovieDB.MovieDialog = MovieDialog;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieGrid = (function (_super) {
+            __extends(MovieGrid, _super);
+            function MovieGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            MovieGrid.prototype.getColumnsKey = function () { return 'MovieDB.Movie'; };
+            MovieGrid.prototype.getDialogType = function () { return MovieDB.MovieDialog; };
+            MovieGrid.prototype.getIdProperty = function () { return MovieDB.MovieRow.idProperty; };
+            MovieGrid.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
+            MovieGrid.prototype.getService = function () { return MovieDB.MovieService.baseUrl; };
+            return MovieGrid;
+        }(Serenity.EntityGrid));
+        MovieGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], MovieGrid);
+        MovieDB.MovieGrid = MovieGrid;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

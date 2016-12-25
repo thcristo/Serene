@@ -7437,3 +7437,9 @@ section.content > .s-DataGrid {
   width: 45%;
   float: right;
 }
+.s-MovieDB-MovieDialog > .size {
+  width: 650px;
+}
+.s-MovieDB-MovieDialog .caption {
+  width: 150px;
+}
