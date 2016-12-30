@@ -51,7 +51,7 @@ namespace Serene.Administration.Entities
             public StringField RoleName;
 
             public RowFields()
-                : base("Roles")
+                : base("Roles", "Administration")
             {
                 LocalTextPrefix = "Administration.Role";
             }

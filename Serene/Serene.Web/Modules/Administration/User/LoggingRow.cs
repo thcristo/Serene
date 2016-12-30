@@ -78,7 +78,7 @@
             public DateTimeField UpdateDate;
 
             public LoggingRowFields(string tableName)
-                : base(tableName)
+                : base(tableName, "Administration")
             {
             }
         }

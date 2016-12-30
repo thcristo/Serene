@@ -72,7 +72,7 @@ namespace Serene.Common.Entities
             public readonly StringField Value;
 
             public RowFields()
-                : base("UserPreferences")
+                : base("UserPreferences", "Administration")
             {
                 LocalTextPrefix = "Common.UserPreference";
             }

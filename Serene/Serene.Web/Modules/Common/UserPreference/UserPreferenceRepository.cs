@@ -26,19 +26,19 @@ namespace Serene.Common.Repositories
 
             if (string.IsNullOrEmpty(request.Value))
             {
-                new SqlDelete(uow.Connection.GetDialect(), fld.TableName)
+                new SqlDelete(uow.Connection.GetDialect(), fld.TableName, string.Empty)
                     .Where(criteria)
                     .Execute(uow.Connection, ExpectedRows.ZeroOrOne);
 
                 return new SaveResponse();
             }
 
-            if (new SqlUpdate(uow.Connection.GetDialect(), fld.TableName)
+            if (new SqlUpdate(uow.Connection.GetDialect(), fld.TableName, string.Empty)
                     .Set(fld.Value, request.Value)
                     .Where(criteria)
                     .Execute(uow.Connection, ExpectedRows.ZeroOrOne) == 0)
             {
-                new SqlInsert(uow.Connection.GetDialect(), fld.TableName)
+                new SqlInsert(uow.Connection.GetDialect(), fld.TableName, string.Empty)
                     .Set(fld.UserId, userId)
                     .Set(fld.PreferenceType, request.PreferenceType)
                     .Set(fld.Name, request.Name)
