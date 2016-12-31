@@ -7443,3 +7443,9 @@ section.content > .s-DataGrid {
 .s-MovieDB-MovieDialog .caption {
   width: 150px;
 }
+.s-MovieDB-MovieDialog > .size {
+  width: 650px;
+}
+.s-MovieDB-MovieDialog .caption {
+  width: 150px;
+}

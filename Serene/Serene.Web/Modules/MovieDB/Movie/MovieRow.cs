@@ -9,7 +9,7 @@ namespace Serene.MovieDB.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("MOVIE"), InstanceName("MOVIE"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Movie"), InstanceName("Movie"), TwoLevelCached]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     public sealed class MovieRow : Row, IIdRow, INameRow
@@ -91,7 +91,7 @@ namespace Serene.MovieDB.Entities
             public Int32Field Runtime;
 
             public RowFields()
-                : base("MOVIE")
+                : base("MOVIE","MovieDB")
             {
                 LocalTextPrefix = "MovieDB.Movie";
             }
