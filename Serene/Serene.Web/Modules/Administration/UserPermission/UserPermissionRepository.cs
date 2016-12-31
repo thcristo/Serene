@@ -42,7 +42,7 @@ namespace Serene.Administration.Repositories
                 if (newList.ContainsKey(k))
                     continue;
 
-                new SqlDelete(uow.Connection.GetDialect(), fld.TableName)
+                new SqlDelete(uow.Connection.GetDialect(), fld.TableName, string.Empty)
                     .Where(
                         new Criteria(fld.UserId) == userID &
                         new Criteria(fld.PermissionKey) == k)
@@ -62,7 +62,7 @@ namespace Serene.Administration.Repositories
                 }
                 else if (oldList[k] != newList[k])
                 {
-                    new SqlUpdate(uow.Connection.GetDialect(), fld.TableName)
+                    new SqlUpdate(uow.Connection.GetDialect(), fld.TableName, string.Empty)
                         .Where(
                             fld.UserId == userID &
                             fld.PermissionKey == k)

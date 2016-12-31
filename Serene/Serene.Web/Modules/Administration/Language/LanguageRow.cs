@@ -58,7 +58,7 @@ namespace Serene.Administration.Entities
             public StringField LanguageName;
 
             public RowFields()
-                : base("Languages")
+                : base("Languages", "Administration")
             {
                 LocalTextPrefix = "Administration.Language";
             }

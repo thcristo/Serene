@@ -84,7 +84,7 @@ namespace Serene.Administration.Entities
             public StringField User;
 
             public RowFields()
-                : base("UserPermissions")
+                : base("UserPermissions", "Administration")
             {
                 LocalTextPrefix = "Administration.UserPermission";
             }
