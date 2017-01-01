@@ -33,7 +33,11 @@
     foreach (var type in tsTypes)
         generator.AddTSType(type);
 
-    var codeByFilename = generator.Run();
+	Serenity.Web.CommonInitialization.InitializeServiceLocator();
+    Serenity.Web.CommonInitialization.InitializeCaching();
+	Serenity.Web.CommonInitialization.InitializeConfigurationSystem();
+    
+	var codeByFilename = generator.Run();
     var manager = Manager.Create(Host, GenerationEnvironment);
     foreach (var pair in codeByFilename) 
     {

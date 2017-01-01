@@ -9,7 +9,7 @@ namespace Serene.MovieDB.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("Movie"), InstanceName("Movie"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Movies"), InstanceName("Movie"), TwoLevelCached]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     public sealed class MovieRow : Row, IIdRow, INameRow
@@ -28,7 +28,7 @@ namespace Serene.MovieDB.Entities
             set { Fields.Title[this] = value; }
         }
 
-        [DisplayName("Description"), Column("DESCRIPTION"), Size(1000)]
+        [DisplayName("Description"), Column("DESCRIPTION"), Size(1000), QuickSearch]
         public String Description
         {
             get { return Fields.Description[this]; }
@@ -42,7 +42,7 @@ namespace Serene.MovieDB.Entities
             set { Fields.Storyline[this] = value; }
         }
 
-        [DisplayName("Release Year"), Column("RELEASE_YEAR")]
+        [DisplayName("Release Year"), Column("RELEASE_YEAR"), QuickSearch(SearchType.Equals, numericOnly:1)]
         public Int32? ReleaseYear
         {
             get { return Fields.ReleaseYear[this]; }
@@ -56,7 +56,7 @@ namespace Serene.MovieDB.Entities
             set { Fields.ReleaseDate[this] = value; }
         }
 
-        [DisplayName("Runtime"), Column("RUNTIME")]
+        [DisplayName("Runtime (mins)"), Column("RUNTIME")]
         public Int32? Runtime
         {
             get { return Fields.Runtime[this]; }

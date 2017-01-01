@@ -1853,7 +1853,7 @@ var Serene;
         }(Serenity.PrefixedContext));
         MovieForm.formKey = 'MovieDB.Movie';
         MovieDB.MovieForm = MovieForm;
-        [['MovieId', function () { return Serenity.IntegerEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Storyline', function () { return Serenity.StringEditor; }], ['ReleaseYear', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['ReleaseYear', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2761,6 +2761,13 @@ var Serene;
             MovieGrid.prototype.getIdProperty = function () { return MovieDB.MovieRow.idProperty; };
             MovieGrid.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
             MovieGrid.prototype.getService = function () { return MovieDB.MovieService.baseUrl; };
+            MovieGrid.prototype.getQuickSearchFields = function () {
+                return [
+                    { name: "", title: "all" },
+                    { name: "Description", title: "description" },
+                    { name: "Year", title: "year" }
+                ];
+            };
             return MovieGrid;
         }(Serenity.EntityGrid));
         MovieGrid = __decorate([

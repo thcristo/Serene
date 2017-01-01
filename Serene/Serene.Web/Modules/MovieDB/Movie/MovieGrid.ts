@@ -12,5 +12,15 @@ namespace Serene.MovieDB {
         constructor(container: JQuery) {
             super(container);
         }
+
+        protected getQuickSearchFields():
+            Serenity.QuickSearchField[]
+        {
+            return [
+                { name: "", title: "all" },
+                { name: "Description", title: "description" },
+                { name: "Year", title: "year" }
+            ];
+        }
     }
 }
