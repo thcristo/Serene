@@ -819,7 +819,15 @@ declare namespace Serene.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         ReleaseYear: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
+        Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.MovieDB {
+    enum MovieKind {
+        Film = 1,
+        TvSeries = 2,
+        MiniSeries = 3,
     }
 }
 declare namespace Serene.MovieDB {
@@ -831,6 +839,7 @@ declare namespace Serene.MovieDB {
         ReleaseYear?: number;
         ReleaseDate?: string;
         Runtime?: number;
+        Kind?: MovieKind;
     }
     namespace MovieRow {
         const idProperty = "MovieId";
@@ -844,6 +853,7 @@ declare namespace Serene.MovieDB {
             const ReleaseYear: string;
             const ReleaseDate: string;
             const Runtime: string;
+            const Kind: string;
         }
     }
 }

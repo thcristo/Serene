@@ -16,10 +16,13 @@ namespace Serene.MovieDB {
         protected getQuickSearchFields():
             Serenity.QuickSearchField[]
         {
+            let fld = MovieRow.Fields;
+            let txt = (s) => Q.text("Db." +
+                MovieRow.localTextPrefix + "." + s).toLowerCase();
             return [
                 { name: "", title: "all" },
-                { name: "Description", title: "description" },
-                { name: "Year", title: "year" }
+                { name: fld.Description, title: txt(fld.Description) },
+                { name: fld.ReleaseYear, title: txt(fld.ReleaseYear) }
             ];
         }
     }
