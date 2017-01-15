@@ -36,8 +36,8 @@
 	Serenity.Web.CommonInitialization.InitializeServiceLocator();
     Serenity.Web.CommonInitialization.InitializeCaching();
 	Serenity.Web.CommonInitialization.InitializeConfigurationSystem();
-    
-	var codeByFilename = generator.Run();
+
+    var codeByFilename = generator.Run();
     var manager = Manager.Create(Host, GenerationEnvironment);
     foreach (var pair in codeByFilename) 
     {
