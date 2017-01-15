@@ -21,7 +21,7 @@ namespace Serene.Administration.Entities
             set { Fields.RolePermissionId[this] = value; }
         }
 
-        [DisplayName("Role Id"), NotNull, ForeignKey("Roles", "RoleId"), LeftJoin("jRole")]
+        [DisplayName("Role Id"), NotNull, ForeignKey("Roles", "RoleId", "Administration"), LeftJoin("jRole")]
         public Int32? RoleId
         {
             get { return Fields.RoleId[this]; }

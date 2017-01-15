@@ -21,7 +21,7 @@ namespace Serene.Administration.Entities
             set { Fields.UserPermissionId[this] = value; }
         }
 
-        [DisplayName("User Id"), NotNull, ForeignKey("Users", "UserId"), LeftJoin("jUser")]
+        [DisplayName("User Id"), NotNull, ForeignKey("Users", "UserId", "Administration"), LeftJoin("jUser")]
         public Int32? UserId
         {
             get { return Fields.UserId[this]; }
