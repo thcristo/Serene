@@ -1,7 +1,5 @@
 ﻿
 
-[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "MovieDB/Genre", typeof(Serene.MovieDB.Pages.GenreController))]
-
 namespace Serene.MovieDB.Pages
 {
     using Serenity;

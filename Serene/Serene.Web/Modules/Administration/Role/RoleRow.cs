@@ -13,7 +13,7 @@ namespace Serene.Administration.Entities
     [LookupScript("Administration.Role")]
     public sealed class RoleRow : Row, IIdRow, INameRow
     {
-        [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole")]
+        [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId", "Administration"), LeftJoin("jRole")]
         public Int32? RoleId
         {
             get { return Fields.RoleId[this]; }

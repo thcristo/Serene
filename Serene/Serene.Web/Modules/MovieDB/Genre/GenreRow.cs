@@ -9,9 +9,10 @@ namespace Serene.MovieDB.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("Genre"), InstanceName("Genre"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Genres"), InstanceName("Genre"), TwoLevelCached]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("MovieDB.Genre")]
     public sealed class GenreRow : Row, IIdRow, INameRow
     {
         [DisplayName("Genre Id"), Column("GENRE_ID"), Identity]
