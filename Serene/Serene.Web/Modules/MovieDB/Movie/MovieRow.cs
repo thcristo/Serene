@@ -6,6 +6,7 @@ namespace Serene.MovieDB.Entities
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
 
@@ -70,19 +71,13 @@ namespace Serene.MovieDB.Entities
             set { Fields.Kind[this] = (Int32?)value; }
         }
 
-        [DisplayName("Genre"), Column("GENRE_ID"), ForeignKey("Genre", "GENRE_ID", "MovieDB"), LeftJoin("g")]
-        [LookupEditor(typeof(GenreRow), InplaceAdd = true)]
-        public Int32? GenreId
+        [DisplayName("Genres")]
+        [LookupEditor(typeof(GenreRow), Multiple = true), NotMapped]
+        [LinkingSetRelation(typeof(MovieGenresRow), "MovieId", "GenreId")]
+        public List<Int32> GenreList
         {
-            get { return Fields.GenreId[this]; }
-            set { Fields.GenreId[this] = value; }
-        }
-
-        [DisplayName("Genre"), Expression("g.Name")]
-        public String GenreName
-        {
-            get { return Fields.GenreName[this]; }
-            set { Fields.GenreName[this] = value; }
+            get { return Fields.GenreList[this]; }
+            set { Fields.GenreList[this] = value; }
         }
         IIdField IIdRow.IdField
         {
@@ -111,8 +106,7 @@ namespace Serene.MovieDB.Entities
             public DateTimeField ReleaseDate;
             public Int32Field Runtime;
             public Int32Field Kind;
-            public Int32Field GenreId;
-            public StringField GenreName;
+            public ListField<Int32> GenreList;
 
             public RowFields()
                 : base("MOVIE","MovieDB")

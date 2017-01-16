@@ -1907,7 +1907,22 @@ var Serene;
         }(Serenity.PrefixedContext));
         MovieForm.formKey = 'MovieDB.Movie';
         MovieDB.MovieForm = MovieForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['ReleaseYear', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreId', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['ReleaseYear', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieGenresRow;
+        (function (MovieGenresRow) {
+            MovieGenresRow.idProperty = 'MovieGenreId';
+            MovieGenresRow.localTextPrefix = 'MovieDB.MovieGenres';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MovieGenresRow.Fields || (MovieGenresRow.Fields = {}));
+            ['MovieGenreId', 'MovieId', 'GenreId', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieReleaseYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'GenreName'].forEach(function (x) { return Fields[x] = x; });
+        })(MovieGenresRow = MovieDB.MovieGenresRow || (MovieDB.MovieGenresRow = {}));
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -1935,7 +1950,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MovieRow.Fields || (MovieRow.Fields = {}));
-            ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreId', 'GenreName'].forEach(function (x) { return Fields[x] = x; });
+            ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList'].forEach(function (x) { return Fields[x] = x; });
         })(MovieRow = MovieDB.MovieRow || (MovieDB.MovieRow = {}));
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
@@ -2834,6 +2849,33 @@ var Serene;
             Serenity.Decorators.registerClass()
         ], GenreGrid);
         MovieDB.GenreGrid = GenreGrid;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var GenreListFormatter = (function () {
+            function GenreListFormatter() {
+            }
+            GenreListFormatter.prototype.format = function (ctx) {
+                var idList = ctx.value;
+                if (!idList || !idList.length)
+                    return "";
+                var byId = MovieDB.GenreRow.getLookup().itemById;
+                return idList.map(function (x) {
+                    var g = byId[x];
+                    if (!g)
+                        return x.toString();
+                    return Q.htmlEncode(g.Name);
+                }).join(", ");
+            };
+            return GenreListFormatter;
+        }());
+        GenreListFormatter = __decorate([
+            Serenity.Decorators.registerFormatter()
+        ], GenreListFormatter);
+        MovieDB.GenreListFormatter = GenreListFormatter;
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 var Serene;

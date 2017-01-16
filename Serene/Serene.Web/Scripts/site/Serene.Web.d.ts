@@ -863,9 +863,41 @@ declare namespace Serene.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         ReleaseYear: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
-        GenreId: Serenity.LookupEditor;
+        GenreList: Serenity.LookupEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.MovieDB {
+    interface MovieGenresRow {
+        MovieGenreId?: number;
+        MovieId?: number;
+        GenreId?: number;
+        MovieTitle?: string;
+        MovieDescription?: string;
+        MovieStoryline?: string;
+        MovieReleaseYear?: number;
+        MovieReleaseDate?: string;
+        MovieRuntime?: number;
+        MovieKind?: number;
+        GenreName?: string;
+    }
+    namespace MovieGenresRow {
+        const idProperty = "MovieGenreId";
+        const localTextPrefix = "MovieDB.MovieGenres";
+        namespace Fields {
+            const MovieGenreId: string;
+            const MovieId: string;
+            const GenreId: string;
+            const MovieTitle: string;
+            const MovieDescription: string;
+            const MovieStoryline: string;
+            const MovieReleaseYear: string;
+            const MovieReleaseDate: string;
+            const MovieRuntime: string;
+            const MovieKind: string;
+            const GenreName: string;
+        }
     }
 }
 declare namespace Serene.MovieDB {
@@ -885,8 +917,7 @@ declare namespace Serene.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
-        GenreId?: number;
-        GenreName?: string;
+        GenreList?: number[];
     }
     namespace MovieRow {
         const idProperty = "MovieId";
@@ -901,8 +932,7 @@ declare namespace Serene.MovieDB {
             const ReleaseDate: string;
             const Runtime: string;
             const Kind: string;
-            const GenreId: string;
-            const GenreName: string;
+            const GenreList: string;
         }
     }
 }
@@ -1139,6 +1169,11 @@ declare namespace Serene.MovieDB {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+    }
+}
+declare namespace Serene.MovieDB {
+    class GenreListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
     }
 }
 declare namespace Serene.MovieDB {
