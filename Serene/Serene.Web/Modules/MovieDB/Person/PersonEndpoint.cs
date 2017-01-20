@@ -1,6 +1,4 @@
 ﻿
-using Serene.Modules.MovieDB.Movie;
-
 namespace Serene.MovieDB.Endpoints
 {
     using Serenity;
@@ -8,12 +6,12 @@ namespace Serene.MovieDB.Endpoints
     using Serenity.Services;
     using System.Data;
     using System.Web.Mvc;
-    using MyRepository = Repositories.MovieRepository;
-    using MyRow = Entities.MovieRow;
+    using MyRepository = Repositories.PersonRepository;
+    using MyRow = Entities.PersonRow;
 
-    [RoutePrefix("Services/MovieDB/Movie"), Route("{action}")]
+    [RoutePrefix("Services/MovieDB/Person"), Route("{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-    public class MovieController : ServiceEndpoint
+    public class PersonController : ServiceEndpoint
     {
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
@@ -38,7 +36,7 @@ namespace Serene.MovieDB.Endpoints
             return new MyRepository().Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, MovieListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyRepository().List(connection, request);
         }

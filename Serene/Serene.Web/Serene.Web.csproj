@@ -1310,6 +1310,12 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Modules.MovieDB.Movie.MovieListRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.Gender.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.GenreColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1317,6 +1323,9 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieKind.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1548,6 +1557,18 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieGenresRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <Content Include="Modules\MovieDB\Person\PersonIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MovieDB\Person\PersonGrid.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Person\PersonDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1641,6 +1662,8 @@
     <Compile Include="Modules\Common\Helpers\GetNextNumberHelper.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberRequest.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
+    <Compile Include="Modules\MovieDB\Movie\MovieListRequest.cs" />
+    <Compile Include="Modules\MovieDB\Person\Gender.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
     <Compile Include="Modules\Administration\User\Authentication\AuthorizationService.cs" />
@@ -1693,6 +1716,12 @@
     <Compile Include="Modules\MovieDB\Genre\GenrePage.cs" />
     <Compile Include="Modules\MovieDB\MovieGenres\MovieGenresRow.cs" />
     <Compile Include="Modules\MovieDB\MovieGenres\MovieGenresRepository.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonRow.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonColumns.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonForm.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonRepository.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonEndpoint.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

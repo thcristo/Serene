@@ -16,7 +16,7 @@ var Serene;
         var LanguageDialog = (function (_super) {
             __extends(LanguageDialog, _super);
             function LanguageDialog() {
-                var _this = _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
                 _this.form = new Administration.LanguageForm(_this.idPrefix);
                 return _this;
             }
@@ -65,7 +65,7 @@ var Serene;
         var RoleDialog = (function (_super) {
             __extends(RoleDialog, _super);
             function RoleDialog() {
-                var _this = _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
                 _this.form = new Administration.RoleForm(_this.idPrefix);
                 return _this;
             }
@@ -1403,7 +1403,7 @@ var Serene;
         var GridEditorDialog = (function (_super) {
             __extends(GridEditorDialog, _super);
             function GridEditorDialog() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
             GridEditorDialog.prototype.destroy = function () {
@@ -1456,7 +1456,7 @@ var Serene;
         var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return LanguageForm;
         }(Serenity.PrefixedContext));
@@ -1510,7 +1510,7 @@ var Serene;
         var RoleForm = (function (_super) {
             __extends(RoleForm, _super);
             function RoleForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return RoleForm;
         }(Serenity.PrefixedContext));
@@ -1614,7 +1614,7 @@ var Serene;
         var UserForm = (function (_super) {
             __extends(UserForm, _super);
             function UserForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return UserForm;
         }(Serenity.PrefixedContext));
@@ -1767,7 +1767,7 @@ var Serene;
         var ChangePasswordForm = (function (_super) {
             __extends(ChangePasswordForm, _super);
             function ChangePasswordForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return ChangePasswordForm;
         }(Serenity.PrefixedContext));
@@ -1783,7 +1783,7 @@ var Serene;
         var ForgotPasswordForm = (function (_super) {
             __extends(ForgotPasswordForm, _super);
             function ForgotPasswordForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return ForgotPasswordForm;
         }(Serenity.PrefixedContext));
@@ -1799,7 +1799,7 @@ var Serene;
         var LoginForm = (function (_super) {
             __extends(LoginForm, _super);
             function LoginForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return LoginForm;
         }(Serenity.PrefixedContext));
@@ -1815,7 +1815,7 @@ var Serene;
         var ResetPasswordForm = (function (_super) {
             __extends(ResetPasswordForm, _super);
             function ResetPasswordForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return ResetPasswordForm;
         }(Serenity.PrefixedContext));
@@ -1831,7 +1831,7 @@ var Serene;
         var SignUpForm = (function (_super) {
             __extends(SignUpForm, _super);
             function SignUpForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return SignUpForm;
         }(Serenity.PrefixedContext));
@@ -1844,10 +1844,22 @@ var Serene;
 (function (Serene) {
     var MovieDB;
     (function (MovieDB) {
+        var Gender;
+        (function (Gender) {
+            Gender[Gender["Male"] = 1] = "Male";
+            Gender[Gender["Female"] = 2] = "Female";
+        })(Gender = MovieDB.Gender || (MovieDB.Gender = {}));
+        Serenity.Decorators.registerEnum(Gender, 'MovieDB.Gender');
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
         var GenreForm = (function (_super) {
             __extends(GenreForm, _super);
             function GenreForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return GenreForm;
         }(Serenity.PrefixedContext));
@@ -1901,7 +1913,7 @@ var Serene;
         var MovieForm = (function (_super) {
             __extends(MovieForm, _super);
             function MovieForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return MovieForm;
         }(Serenity.PrefixedContext));
@@ -1973,12 +1985,61 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var PersonForm = (function (_super) {
+            __extends(PersonForm, _super);
+            function PersonForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return PersonForm;
+        }(Serenity.PrefixedContext));
+        PersonForm.formKey = 'MovieDB.Person';
+        MovieDB.PersonForm = PersonForm;
+        [['Firstname', function () { return Serenity.StringEditor; }], ['Lastname', function () { return Serenity.StringEditor; }], ['Birthdate', function () { return Serenity.DateEditor; }], ['Birthplace', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.EnumEditor; }], ['Height', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PersonForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var PersonRow;
+        (function (PersonRow) {
+            PersonRow.idProperty = 'PersonId';
+            PersonRow.nameProperty = 'Fullname';
+            PersonRow.localTextPrefix = 'MovieDB.Person';
+            var Fields;
+            (function (Fields) {
+            })(Fields = PersonRow.Fields || (PersonRow.Fields = {}));
+            ['PersonId', 'Firstname', 'Lastname', 'Fullname', 'Birthdate', 'Birthplace', 'Gender', 'Height'].forEach(function (x) { return Fields[x] = x; });
+        })(PersonRow = MovieDB.PersonRow || (MovieDB.PersonRow = {}));
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var PersonService;
+        (function (PersonService) {
+            PersonService.baseUrl = 'MovieDB/Person';
+            var Methods;
+            (function (Methods) {
+            })(Methods = PersonService.Methods || (PersonService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                PersonService[x] = function (r, s, o) { return Q.serviceRequest(PersonService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = PersonService.baseUrl + '/' + x;
+            });
+        })(PersonService = MovieDB.PersonService || (MovieDB.PersonService = {}));
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Organization;
     (function (Organization) {
         var BusinessUnitsForm = (function (_super) {
             __extends(BusinessUnitsForm, _super);
             function BusinessUnitsForm() {
-                return _super.apply(this, arguments) || this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             return BusinessUnitsForm;
         }(Serenity.PrefixedContext));
@@ -2811,7 +2872,7 @@ var Serene;
         var GenreDialog = (function (_super) {
             __extends(GenreDialog, _super);
             function GenreDialog() {
-                var _this = _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
                 _this.form = new MovieDB.GenreForm(_this.idPrefix);
                 return _this;
             }
@@ -2885,7 +2946,7 @@ var Serene;
         var MovieDialog = (function (_super) {
             __extends(MovieDialog, _super);
             function MovieDialog() {
-                var _this = _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
                 _this.form = new MovieDB.MovieForm(_this.idPrefix);
                 return _this;
             }
@@ -2927,12 +2988,72 @@ var Serene;
                     { name: fld.ReleaseYear, title: txt(fld.ReleaseYear) }
                 ];
             };
+            MovieGrid.prototype.getQuickFilters = function () {
+                var items = _super.prototype.getQuickFilters.call(this);
+                var genreListFilter = Q.first(items, function (x) {
+                    return x.field == MovieDB.MovieRow.Fields.GenreList;
+                });
+                genreListFilter.handler = function (h) {
+                    var request = h.request;
+                    var values = h.widget.values;
+                    request.Genres = values.map(function (x) { return parseInt(x, 10); });
+                    h.handled = true;
+                };
+                return items;
+            };
             return MovieGrid;
         }(Serenity.EntityGrid));
         MovieGrid = __decorate([
             Serenity.Decorators.registerClass()
         ], MovieGrid);
         MovieDB.MovieGrid = MovieGrid;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var PersonDialog = (function (_super) {
+            __extends(PersonDialog, _super);
+            function PersonDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new MovieDB.PersonForm(_this.idPrefix);
+                return _this;
+            }
+            PersonDialog.prototype.getFormKey = function () { return MovieDB.PersonForm.formKey; };
+            PersonDialog.prototype.getIdProperty = function () { return MovieDB.PersonRow.idProperty; };
+            PersonDialog.prototype.getLocalTextPrefix = function () { return MovieDB.PersonRow.localTextPrefix; };
+            PersonDialog.prototype.getNameProperty = function () { return MovieDB.PersonRow.nameProperty; };
+            PersonDialog.prototype.getService = function () { return MovieDB.PersonService.baseUrl; };
+            return PersonDialog;
+        }(Serenity.EntityDialog));
+        PersonDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], PersonDialog);
+        MovieDB.PersonDialog = PersonDialog;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var PersonGrid = (function (_super) {
+            __extends(PersonGrid, _super);
+            function PersonGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            PersonGrid.prototype.getColumnsKey = function () { return 'MovieDB.Person'; };
+            PersonGrid.prototype.getDialogType = function () { return MovieDB.PersonDialog; };
+            PersonGrid.prototype.getIdProperty = function () { return MovieDB.PersonRow.idProperty; };
+            PersonGrid.prototype.getLocalTextPrefix = function () { return MovieDB.PersonRow.localTextPrefix; };
+            PersonGrid.prototype.getService = function () { return MovieDB.PersonService.baseUrl; };
+            return PersonGrid;
+        }(Serenity.EntityGrid));
+        PersonGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], PersonGrid);
+        MovieDB.PersonGrid = PersonGrid;
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

@@ -807,6 +807,17 @@ declare namespace Serene.Membership {
         Password?: string;
     }
 }
+declare namespace Serene.Modules.MovieDB.Movie {
+    interface MovieListRequest extends Serenity.ListRequest {
+        Genres?: number[];
+    }
+}
+declare namespace Serene.MovieDB {
+    enum Gender {
+        Male = 1,
+        Female = 2,
+    }
+}
 declare namespace Serene.MovieDB {
 }
 declare namespace Serene.MovieDB {
@@ -943,7 +954,66 @@ declare namespace Serene.MovieDB {
         function Update(request: Serenity.SaveRequest<MovieRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MovieRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MovieRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Modules.MovieDB.Movie.MovieListRequest, onSuccess?: (response: Serenity.ListResponse<MovieRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.MovieDB {
+}
+declare namespace Serene.MovieDB {
+    class PersonForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PersonForm {
+        Firstname: Serenity.StringEditor;
+        Lastname: Serenity.StringEditor;
+        Birthdate: Serenity.DateEditor;
+        Birthplace: Serenity.StringEditor;
+        Gender: Serenity.EnumEditor;
+        Height: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.MovieDB {
+    interface PersonRow {
+        PersonId?: number;
+        Firstname?: string;
+        Lastname?: string;
+        Fullname?: string;
+        Birthdate?: string;
+        Birthplace?: string;
+        Gender?: Gender;
+        Height?: number;
+    }
+    namespace PersonRow {
+        const idProperty = "PersonId";
+        const nameProperty = "Fullname";
+        const localTextPrefix = "MovieDB.Person";
+        namespace Fields {
+            const PersonId: string;
+            const Firstname: string;
+            const Lastname: string;
+            const Fullname: string;
+            const Birthdate: string;
+            const Birthplace: string;
+            const Gender: string;
+            const Height: string;
+        }
+    }
+}
+declare namespace Serene.MovieDB {
+    namespace PersonService {
+        const baseUrl = "MovieDB/Person";
+        function Create(request: Serenity.SaveRequest<PersonRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PersonRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PersonRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PersonRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
@@ -1195,5 +1265,26 @@ declare namespace Serene.MovieDB {
         protected getService(): string;
         constructor(container: JQuery);
         protected getQuickSearchFields(): Serenity.QuickSearchField[];
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+    }
+}
+declare namespace Serene.MovieDB {
+    class PersonDialog extends Serenity.EntityDialog<PersonRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PersonForm;
+    }
+}
+declare namespace Serene.MovieDB {
+    class PersonGrid extends Serenity.EntityGrid<PersonRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PersonDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
     }
 }

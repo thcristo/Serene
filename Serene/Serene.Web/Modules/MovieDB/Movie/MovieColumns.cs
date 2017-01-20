@@ -21,7 +21,7 @@ namespace Serene.MovieDB.Columns
         public String Storyline { get; set; }
         public Int32 ReleaseYear { get; set; }
         public DateTime ReleaseDate { get; set; }
-        [Width(200), GenreListFormatter]
+        [Width(200), GenreListFormatter, QuickFilter]
         public List<Int32> GenreList { get; set; }
         [DisplayName("Runtime in minutes"), Width(150), AlignRight]
         public Int32 Runtime { get; set; }

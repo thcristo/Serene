@@ -1,6 +1,7 @@
 ﻿
 namespace Serene.MovieDB {
-    
+    import MovieListRequest = Serene.Modules.MovieDB.Movie.MovieListRequest;
+
     @Serenity.Decorators.registerClass()
     export class MovieGrid extends Serenity.EntityGrid<MovieRow, any> {
         protected getColumnsKey() { return 'MovieDB.Movie'; }
@@ -24,6 +25,22 @@ namespace Serene.MovieDB {
                 { name: fld.Description, title: txt(fld.Description) },
                 { name: fld.ReleaseYear, title: txt(fld.ReleaseYear) }
             ];
+        }
+
+        protected getQuickFilters() {
+            let items = super.getQuickFilters();
+
+            var genreListFilter = Q.first(items, x =>
+                x.field == MovieRow.Fields.GenreList);
+
+            genreListFilter.handler = h => {
+                var request = (h.request as MovieListRequest);
+                var values = (h.widget as Serenity.LookupEditor).values;
+                request.Genres = values.map(x => parseInt(x, 10));
+                h.handled = true;
+            };
+
+            return items;
         }
     }
 }
