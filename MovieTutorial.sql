@@ -31,7 +31,7 @@ CREATE TABLE MV_MOVIE_GENRES
 
 CREATE GENERATOR MV_MOVIE_GENRES_GEN;
 
-commit transaction;
+commit work;
 
 SET TERM ^ ;
 
@@ -62,4 +62,4 @@ END^
 
 set term ; ^
 
-COMMIT TRANSACTION;
+COMMIT work;
