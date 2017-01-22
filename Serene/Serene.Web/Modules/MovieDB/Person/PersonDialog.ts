@@ -12,5 +12,24 @@ namespace Serene.MovieDB {
 
         protected form = new PersonForm(this.idPrefix);
 
+        private moviesGrid: PersonMovieGrid;
+
+        constructor()
+        {
+            super();
+
+            this.moviesGrid = new PersonMovieGrid(this.byId("MoviesGrid"));
+            this.tabs.on('tabsactivate', (e, i) =>
+            {
+                this.arrange();
+            });
+        }
+
+        protected afterLoadEntity()
+        {
+            super.afterLoadEntity();
+
+            this.moviesGrid.personID = this.entityId;
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace Serene.MovieDB.Forms
     {
         public String Firstname { get; set; }
         public String Lastname { get; set; }
+        public String PrimaryImage { get; set; }
+        public String GalleryImages { get; set; }
         public DateTime Birthdate { get; set; }
         public String Birthplace { get; set; }
         public Gender Gender { get; set; }

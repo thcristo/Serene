@@ -495,6 +495,7 @@
     <Content Include="Fonts\ionicons.svg" />
     <Content Include="Fonts\Simple-Line-Icons.svg" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
+    <Content Include="Modules\MovieDB\Person\MovieDB.PersonDialog.Template.html" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
@@ -1319,6 +1320,9 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.GenreColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1326,6 +1330,9 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.PersonMovieColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1522,7 +1529,10 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditDialog.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\MovieCast\MovieCastEditor.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Movie\GenreListFormatter.ts" />
+    <TypeScriptCompile Include="Modules\MovieDB\Person\PersonMovieGrid.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.d.ts" />
@@ -1569,6 +1579,15 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonGrid.ts" />
     <TypeScriptCompile Include="Modules\MovieDB\Person\PersonDialog.ts" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MovieDB.MovieCastForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1619,6 +1638,9 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.GenreListFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MovieDB.MovieCastEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161029_130000_ExceptionLog.cs" />
     <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
@@ -1664,6 +1686,7 @@
     <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieListRequest.cs" />
     <Compile Include="Modules\MovieDB\Person\Gender.cs" />
+    <Compile Include="Modules\MovieDB\Person\PersonMovieColumns.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
     <Compile Include="Modules\Administration\User\Authentication\AuthorizationService.cs" />
@@ -1722,6 +1745,11 @@
     <Compile Include="Modules\MovieDB\Person\PersonRepository.cs" />
     <Compile Include="Modules\MovieDB\Person\PersonEndpoint.cs" />
     <Compile Include="Modules\MovieDB\Person\PersonPage.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastRow.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastColumns.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastForm.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastRepository.cs" />
+    <Compile Include="Modules\MovieDB\MovieCast\MovieCastEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

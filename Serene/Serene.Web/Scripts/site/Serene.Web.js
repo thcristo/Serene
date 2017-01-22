@@ -1910,6 +1910,55 @@ var Serene;
 (function (Serene) {
     var MovieDB;
     (function (MovieDB) {
+        var MovieCastForm = (function (_super) {
+            __extends(MovieCastForm, _super);
+            function MovieCastForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return MovieCastForm;
+        }(Serenity.PrefixedContext));
+        MovieCastForm.formKey = 'MovieDB.MovieCast';
+        MovieDB.MovieCastForm = MovieCastForm;
+        [['PersonId', function () { return Serenity.LookupEditor; }], ['MovieCharacter', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MovieCastForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastRow;
+        (function (MovieCastRow) {
+            MovieCastRow.idProperty = 'MoviecastId';
+            MovieCastRow.nameProperty = 'MovieCharacter';
+            MovieCastRow.localTextPrefix = 'MovieDB.MovieCast';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MovieCastRow.Fields || (MovieCastRow.Fields = {}));
+            ['MoviecastId', 'MovieId', 'PersonId', 'MovieCharacter', 'MovieTitle', 'MovieDescription', 'MovieStoryline', 'MovieReleaseYear', 'MovieReleaseDate', 'MovieRuntime', 'MovieKind', 'PersonFirstname', 'PersonLastname', 'PersonFullname', 'PersonBirthdate', 'PersonBirthplace', 'PersonGender', 'PersonHeight'].forEach(function (x) { return Fields[x] = x; });
+        })(MovieCastRow = MovieDB.MovieCastRow || (MovieDB.MovieCastRow = {}));
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastService;
+        (function (MovieCastService) {
+            MovieCastService.baseUrl = 'MovieDB/MovieCast';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MovieCastService.Methods || (MovieCastService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MovieCastService[x] = function (r, s, o) { return Q.serviceRequest(MovieCastService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MovieCastService.baseUrl + '/' + x;
+            });
+        })(MovieCastService = MovieDB.MovieCastService || (MovieDB.MovieCastService = {}));
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
         var MovieForm = (function (_super) {
             __extends(MovieForm, _super);
             function MovieForm() {
@@ -1919,7 +1968,7 @@ var Serene;
         }(Serenity.PrefixedContext));
         MovieForm.formKey = 'MovieDB.Movie';
         MovieDB.MovieForm = MovieForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['ReleaseYear', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['CastList', function () { return MovieDB.MovieCastEditor; }], ['PrimaryImage', function () { return Serenity.ImageUploadEditor; }], ['GalleryImages', function () { return Serenity.MultipleImageUploadEditor; }], ['Storyline', function () { return Serenity.TextAreaEditor; }], ['ReleaseYear', function () { return Serenity.IntegerEditor; }], ['ReleaseDate', function () { return Serenity.DateEditor; }], ['GenreList', function () { return Serenity.LookupEditor; }], ['Kind', function () { return Serenity.EnumEditor; }], ['Runtime', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MovieForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -1962,7 +2011,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MovieRow.Fields || (MovieRow.Fields = {}));
-            ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList'].forEach(function (x) { return Fields[x] = x; });
+            ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList', 'CastList', 'PrimaryImage', 'GalleryImages'].forEach(function (x) { return Fields[x] = x; });
         })(MovieRow = MovieDB.MovieRow || (MovieDB.MovieRow = {}));
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
@@ -1996,7 +2045,7 @@ var Serene;
         }(Serenity.PrefixedContext));
         PersonForm.formKey = 'MovieDB.Person';
         MovieDB.PersonForm = PersonForm;
-        [['Firstname', function () { return Serenity.StringEditor; }], ['Lastname', function () { return Serenity.StringEditor; }], ['Birthdate', function () { return Serenity.DateEditor; }], ['Birthplace', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.EnumEditor; }], ['Height', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PersonForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Firstname', function () { return Serenity.StringEditor; }], ['Lastname', function () { return Serenity.StringEditor; }], ['PrimaryImage', function () { return Serenity.ImageUploadEditor; }], ['GalleryImages', function () { return Serenity.MultipleImageUploadEditor; }], ['Birthdate', function () { return Serenity.DateEditor; }], ['Birthplace', function () { return Serenity.StringEditor; }], ['Gender', function () { return Serenity.EnumEditor; }], ['Height', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PersonForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2008,10 +2057,15 @@ var Serene;
             PersonRow.idProperty = 'PersonId';
             PersonRow.nameProperty = 'Fullname';
             PersonRow.localTextPrefix = 'MovieDB.Person';
+            PersonRow.lookupKey = 'MovieDB.Person';
+            function getLookup() {
+                return Q.getLookup('MovieDB.Person');
+            }
+            PersonRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = PersonRow.Fields || (PersonRow.Fields = {}));
-            ['PersonId', 'Firstname', 'Lastname', 'Fullname', 'Birthdate', 'Birthplace', 'Gender', 'Height'].forEach(function (x) { return Fields[x] = x; });
+            ['PersonId', 'Firstname', 'Lastname', 'Fullname', 'Birthdate', 'Birthplace', 'Gender', 'Height', 'PrimaryImage', 'GalleryImages'].forEach(function (x) { return Fields[x] = x; });
         })(PersonRow = MovieDB.PersonRow || (MovieDB.PersonRow = {}));
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
@@ -3009,6 +3063,60 @@ var Serene;
         MovieDB.MovieGrid = MovieGrid;
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastEditDialog = (function (_super) {
+            __extends(MovieCastEditDialog, _super);
+            function MovieCastEditDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new MovieDB.MovieCastForm(_this.idPrefix);
+                return _this;
+            }
+            MovieCastEditDialog.prototype.getFormKey = function () { return MovieDB.MovieCastForm.formKey; };
+            MovieCastEditDialog.prototype.getNameProperty = function () { return MovieDB.MovieCastRow.nameProperty; };
+            MovieCastEditDialog.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            return MovieCastEditDialog;
+        }(Serene.Common.GridEditorDialog));
+        MovieCastEditDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], MovieCastEditDialog);
+        MovieDB.MovieCastEditDialog = MovieCastEditDialog;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieCastEditor = (function (_super) {
+            __extends(MovieCastEditor, _super);
+            function MovieCastEditor(container) {
+                return _super.call(this, container) || this;
+            }
+            MovieCastEditor.prototype.getColumnsKey = function () { return "MovieDB.MovieCast"; };
+            MovieCastEditor.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            MovieCastEditor.prototype.getDialogType = function () { return MovieDB.MovieCastEditDialog; };
+            MovieCastEditor.prototype.validateEntity = function (row, id) {
+                if (!_super.prototype.validateEntity.call(this, row, id))
+                    return false;
+                row.PersonFullname = MovieDB.PersonRow.getLookup()
+                    .itemById[row.PersonId].Fullname;
+                return true;
+            };
+            MovieCastEditor.prototype.getAddButtonCaption = function () {
+                return "Add";
+            };
+            return MovieCastEditor;
+        }(Serene.Common.GridEditorBase));
+        MovieCastEditor = __decorate([
+            Serenity.Decorators.registerEditor()
+        ], MovieCastEditor);
+        MovieDB.MovieCastEditor = MovieCastEditor;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var MovieDB;
@@ -3016,8 +3124,12 @@ var Serene;
         var PersonDialog = (function (_super) {
             __extends(PersonDialog, _super);
             function PersonDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super.call(this) || this;
                 _this.form = new MovieDB.PersonForm(_this.idPrefix);
+                _this.moviesGrid = new MovieDB.PersonMovieGrid(_this.byId("MoviesGrid"));
+                _this.tabs.on('tabsactivate', function (e, i) {
+                    _this.arrange();
+                });
                 return _this;
             }
             PersonDialog.prototype.getFormKey = function () { return MovieDB.PersonForm.formKey; };
@@ -3025,6 +3137,10 @@ var Serene;
             PersonDialog.prototype.getLocalTextPrefix = function () { return MovieDB.PersonRow.localTextPrefix; };
             PersonDialog.prototype.getNameProperty = function () { return MovieDB.PersonRow.nameProperty; };
             PersonDialog.prototype.getService = function () { return MovieDB.PersonService.baseUrl; };
+            PersonDialog.prototype.afterLoadEntity = function () {
+                _super.prototype.afterLoadEntity.call(this);
+                this.moviesGrid.personID = this.entityId;
+            };
             return PersonDialog;
         }(Serenity.EntityDialog));
         PersonDialog = __decorate([
@@ -3054,6 +3170,53 @@ var Serene;
             Serenity.Decorators.registerClass()
         ], PersonGrid);
         MovieDB.PersonGrid = PersonGrid;
+    })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var MovieDB;
+    (function (MovieDB) {
+        var PersonMovieGrid = (function (_super) {
+            __extends(PersonMovieGrid, _super);
+            function PersonMovieGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            PersonMovieGrid.prototype.getColumnsKey = function () { return "MovieDB.PersonMovie"; };
+            PersonMovieGrid.prototype.getIdProperty = function () { return MovieDB.MovieCastRow.idProperty; };
+            PersonMovieGrid.prototype.getLocalTextPrefix = function () { return MovieDB.MovieCastRow.localTextPrefix; };
+            PersonMovieGrid.prototype.getService = function () { return MovieDB.MovieCastService.baseUrl; };
+            PersonMovieGrid.prototype.getButtons = function () {
+                return null;
+            };
+            PersonMovieGrid.prototype.getInitialTitle = function () {
+                return null;
+            };
+            PersonMovieGrid.prototype.usePager = function () {
+                return false;
+            };
+            PersonMovieGrid.prototype.getGridCanLoad = function () {
+                return this.personID != null;
+            };
+            Object.defineProperty(PersonMovieGrid.prototype, "personID", {
+                get: function () {
+                    return this._personID;
+                },
+                set: function (value) {
+                    if (this._personID != value) {
+                        this._personID = value;
+                        this.setEquality(MovieDB.MovieCastRow.Fields.PersonId, value);
+                        this.refresh();
+                    }
+                },
+                enumerable: true,
+                configurable: true
+            });
+            return PersonMovieGrid;
+        }(Serenity.EntityGrid));
+        PersonMovieGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], PersonMovieGrid);
+        MovieDB.PersonMovieGrid = PersonMovieGrid;
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

@@ -12,6 +12,7 @@ namespace Serene.MovieDB.Entities
     [ConnectionKey("Default"), DisplayName("Persons"), InstanceName("Person"), TwoLevelCached]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
+    [LookupScript("MovieDB.Person")]
     public sealed class PersonRow : Row, IIdRow, INameRow
     {
         [DisplayName("Person Id"), Column("PERSON_ID"), Identity]
@@ -71,6 +72,22 @@ namespace Serene.MovieDB.Entities
             set { Fields.Height[this] = value; }
         }
 
+        [DisplayName("Primary Image"), Column("PRIMARY_IMAGE"), Size(100),
+         ImageUploadEditor(FilenameFormat = "Person/PrimaryImage/~")]
+        public string PrimaryImage
+        {
+            get { return Fields.PrimaryImage[this]; }
+            set { Fields.PrimaryImage[this] = value; }
+        }
+
+        [DisplayName("Gallery Images"), Column("GALLERY_IMAGES")
+         MultipleImageUploadEditor(FilenameFormat = "Person/GalleryImages/~")]
+        public string GalleryImages
+        {
+            get { return Fields.GalleryImages[this]; }
+            set { Fields.GalleryImages[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.PersonId; }
@@ -98,6 +115,8 @@ namespace Serene.MovieDB.Entities
             public StringField Birthplace;
             public Int32Field Gender;
             public Int32Field Height;
+            public StringField PrimaryImage;
+            public StringField GalleryImages;
 
             public RowFields()
                 : base("PERSON","MovieDB")

@@ -79,6 +79,31 @@ namespace Serene.MovieDB.Entities
             get { return Fields.GenreList[this]; }
             set { Fields.GenreList[this] = value; }
         }
+
+        [MasterDetailRelation(foreignKey: "MovieId", IncludeColumns = "PersonFullname")]
+        [DisplayName("Cast List"), NotMapped]
+        public List<MovieCastRow> CastList
+        {
+            get { return Fields.CastList[this]; }
+            set { Fields.CastList[this] = value; }
+        }
+
+        [DisplayName("Primary Image"), Column("PRIMARY_IMAGE"), Size(100),
+        ImageUploadEditor(FilenameFormat = "Movie/PrimaryImage/~")]
+        public string PrimaryImage
+        {
+            get { return Fields.PrimaryImage[this]; }
+            set { Fields.PrimaryImage[this] = value; }
+        }
+
+        [DisplayName("Gallery Images"), Column("GALLERY_IMAGES")
+         MultipleImageUploadEditor(FilenameFormat = "Movie/GalleryImages/~")]
+        public string GalleryImages
+        {
+            get { return Fields.GalleryImages[this]; }
+            set { Fields.GalleryImages[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.MovieId; }
@@ -107,6 +132,9 @@ namespace Serene.MovieDB.Entities
             public Int32Field Runtime;
             public Int32Field Kind;
             public ListField<Int32> GenreList;
+            public RowListField<MovieCastRow> CastList;
+            public StringField PrimaryImage;
+            public StringField GalleryImages;
 
             public RowFields()
                 : base("MOVIE","MovieDB")

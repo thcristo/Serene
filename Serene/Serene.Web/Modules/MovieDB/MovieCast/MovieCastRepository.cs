@@ -1,7 +1,5 @@
 ﻿
 
-using Serene.Modules.MovieDB.Movie;
-
 namespace Serene.MovieDB.Repositories
 {
     using Serenity;
@@ -9,9 +7,9 @@ namespace Serene.MovieDB.Repositories
     using Serenity.Services;
     using System;
     using System.Data;
-    using MyRow = Entities.MovieRow;
+    using MyRow = Entities.MovieCastRow;
 
-    public class MovieRepository
+    public class MovieCastRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
@@ -35,27 +33,14 @@ namespace Serene.MovieDB.Repositories
             return new MyRetrieveHandler().Process(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, MovieListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyListHandler().Process(connection, request);
         }
 
-        private class MySaveHandler : SaveRequestHandler<MyRow>
-        {
-
-        }
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow>
-        {
-            
-        }
-        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow>
-        {
-            
-        }
-
-        private class MyListHandler : ListRequestHandler<MyRow, MovieListRequest>
-        {
-            
-        }
+        private class MySaveHandler : SaveRequestHandler<MyRow> { }
+        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
+        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
+        private class MyListHandler : ListRequestHandler<MyRow> { }
     }
 }
