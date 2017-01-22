@@ -74,5 +74,13 @@
             this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
                 .closest('.field').find('sup').toggle(this.isNew());
         }
+
+        protected getPropertyItems()
+        {
+            let items = super.getPropertyItems();
+            if (!Authorization.hasPermission("Administration:Tenants"))
+                items = items.filter(x => x.name != UserRow.Fields.TenantId);
+            return items;
+        }
     }
 }

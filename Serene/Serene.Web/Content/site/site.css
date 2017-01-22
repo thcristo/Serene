@@ -7093,6 +7093,50 @@ section.content > .s-DataGrid {
 .s-PermissionCheckEditor .effective-permission.deny {
   background-image: url(../serenity/images/slash.png);
 }
+.s-Administration-TenantDialog > .size {
+  width: 650px;
+}
+.s-Administration-TenantDialog .caption {
+  width: 150px;
+}
+.s-UserDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-UserDialog .tab-pane {
+  height: auto;
+}
+.s-UserDialog .caption {
+  width: 150px;
+}
+.s-UserDialog .editor {
+  width: 400px;
+}
+.s-UserDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-UserDialog .s-Form .editor.dateQ {
+  width: 376px;
+}
+.s-UserDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-UserDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 281px;
+}
+.s-UserDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-UserDialog .s-Form .editor.has-inplace-button {
+  width: 374px;
+}
+.s-UserDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-UserDialog .categories {
+  height: 300px;
+}
 /*Default styles for login/register pages*/
 .page-content .s-LoginPanel {
   padding: 30px 20px;

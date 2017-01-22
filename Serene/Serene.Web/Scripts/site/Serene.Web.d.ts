@@ -55,6 +55,26 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Administration {
+    class TenantDialog extends Serenity.EntityDialog<TenantRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TenantForm;
+    }
+}
+declare namespace Serene.Administration {
+    class TenantGrid extends Serenity.EntityGrid<TenantRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TenantDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Administration {
     class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
@@ -93,6 +113,7 @@ declare namespace Serene.Administration {
         protected getToolbarButtons(): Serenity.ToolButton[];
         protected updateInterface(): void;
         protected afterLoadEntity(): void;
+        protected getPropertyItems(): Serenity.PropertyItem[];
     }
 }
 declare namespace Serene.Administration {
@@ -432,6 +453,50 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Administration {
+}
+declare namespace Serene.Administration {
+    class TenantForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface TenantForm {
+        Name: Serenity.StringEditor;
+    }
+}
+declare namespace Serene.Administration {
+    interface TenantRow {
+        Id?: number;
+        Name?: string;
+    }
+    namespace TenantRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Administration.Tenant";
+        const lookupKey = "Administration.Tenant";
+        function getLookup(): Q.Lookup<TenantRow>;
+        namespace Fields {
+            const Id: string;
+            const Name: string;
+        }
+    }
+}
+declare namespace Serene.Administration {
+    namespace TenantService {
+        const baseUrl = "Administration/Tenant";
+        function Create(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Administration {
     interface TranslationItem {
         Key?: string;
         SourceText?: string;
@@ -478,6 +543,7 @@ declare namespace Serene.Administration {
         Password: Serenity.PasswordEditor;
         PasswordConfirm: Serenity.PasswordEditor;
         Source: Serenity.StringEditor;
+        TenantId: Serenity.LookupEditor;
     }
 }
 declare namespace Serene.Administration {
@@ -591,6 +657,8 @@ declare namespace Serene.Administration {
         UserImage?: string;
         LastDirectoryUpdate?: string;
         IsActive?: number;
+        TenantId?: number;
+        TenantName?: string;
         Password?: string;
         PasswordConfirm?: string;
         InsertUserId?: number;
@@ -616,6 +684,8 @@ declare namespace Serene.Administration {
             const UserImage: string;
             const LastDirectoryUpdate: string;
             const IsActive: string;
+            const TenantId: string;
+            const TenantName: string;
             const Password: string;
             const PasswordConfirm: string;
             const InsertUserId: string;

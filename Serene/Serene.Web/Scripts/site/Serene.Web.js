@@ -187,6 +187,53 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var TenantDialog = (function (_super) {
+            __extends(TenantDialog, _super);
+            function TenantDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Administration.TenantForm(_this.idPrefix);
+                return _this;
+            }
+            TenantDialog.prototype.getFormKey = function () { return Administration.TenantForm.formKey; };
+            TenantDialog.prototype.getIdProperty = function () { return Administration.TenantRow.idProperty; };
+            TenantDialog.prototype.getLocalTextPrefix = function () { return Administration.TenantRow.localTextPrefix; };
+            TenantDialog.prototype.getNameProperty = function () { return Administration.TenantRow.nameProperty; };
+            TenantDialog.prototype.getService = function () { return Administration.TenantService.baseUrl; };
+            return TenantDialog;
+        }(Serenity.EntityDialog));
+        TenantDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.responsive()
+        ], TenantDialog);
+        Administration.TenantDialog = TenantDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var TenantGrid = (function (_super) {
+            __extends(TenantGrid, _super);
+            function TenantGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            TenantGrid.prototype.getColumnsKey = function () { return 'Administration.Tenant'; };
+            TenantGrid.prototype.getDialogType = function () { return Administration.TenantDialog; };
+            TenantGrid.prototype.getIdProperty = function () { return Administration.TenantRow.idProperty; };
+            TenantGrid.prototype.getLocalTextPrefix = function () { return Administration.TenantRow.localTextPrefix; };
+            TenantGrid.prototype.getService = function () { return Administration.TenantService.baseUrl; };
+            return TenantGrid;
+        }(Serenity.EntityGrid));
+        TenantGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TenantGrid);
+        Administration.TenantGrid = TenantGrid;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var TranslationGrid = (function (_super) {
             __extends(TranslationGrid, _super);
             function TranslationGrid(container) {
@@ -460,6 +507,12 @@ var Serene;
                     .closest('.field').find('sup').toggle(this.isNew());
                 this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
                     .closest('.field').find('sup').toggle(this.isNew());
+            };
+            UserDialog.prototype.getPropertyItems = function () {
+                var items = _super.prototype.getPropertyItems.call(this);
+                if (!Serene.Authorization.hasPermission("Administration:Tenants"))
+                    items = items.filter(function (x) { return x.name != Administration.UserRow.Fields.TenantId; });
+                return items;
             };
             return UserDialog;
         }(Serenity.EntityDialog));
@@ -1594,6 +1647,60 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var TenantForm = (function (_super) {
+            __extends(TenantForm, _super);
+            function TenantForm() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return TenantForm;
+        }(Serenity.PrefixedContext));
+        TenantForm.formKey = 'Administration.Tenant';
+        Administration.TenantForm = TenantForm;
+        [['Name', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TenantForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var TenantRow;
+        (function (TenantRow) {
+            TenantRow.idProperty = 'Id';
+            TenantRow.nameProperty = 'Name';
+            TenantRow.localTextPrefix = 'Administration.Tenant';
+            TenantRow.lookupKey = 'Administration.Tenant';
+            function getLookup() {
+                return Q.getLookup('Administration.Tenant');
+            }
+            TenantRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = TenantRow.Fields || (TenantRow.Fields = {}));
+            ['Id', 'Name'].forEach(function (x) { return Fields[x] = x; });
+        })(TenantRow = Administration.TenantRow || (Administration.TenantRow = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var TenantService;
+        (function (TenantService) {
+            TenantService.baseUrl = 'Administration/Tenant';
+            var Methods;
+            (function (Methods) {
+            })(Methods = TenantService.Methods || (TenantService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                TenantService[x] = function (r, s, o) { return Q.serviceRequest(TenantService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = TenantService.baseUrl + '/' + x;
+            });
+        })(TenantService = Administration.TenantService || (Administration.TenantService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var TranslationService;
         (function (TranslationService) {
             TranslationService.baseUrl = 'Administration/Translation';
@@ -1620,7 +1727,7 @@ var Serene;
         }(Serenity.PrefixedContext));
         UserForm.formKey = 'Administration.User';
         Administration.UserForm = UserForm;
-        [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }], ['TenantId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -1706,7 +1813,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = UserRow.Fields || (UserRow.Fields = {}));
-            ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
+            ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'TenantId', 'TenantName', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
         })(UserRow = Administration.UserRow || (Administration.UserRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));

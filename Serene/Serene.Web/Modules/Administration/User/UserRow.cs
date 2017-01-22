@@ -98,6 +98,20 @@ namespace Serene.Administration.Entities
             set { Fields.LastDirectoryUpdate[this] = value; }
         }
 
+        [DisplayName("Tenant"), Column("TENANT_ID"), ForeignKey("TENANTS", "TENANT_ID", "Administration"), LeftJoin("tnt")]
+        [LookupEditor(typeof(TenantRow))]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
+        [DisplayName("Tenant"), Expression("tnt.Tenant_Name")]
+        public String TenantName
+        {
+            get { return Fields.TenantName[this]; }
+            set { Fields.TenantName[this] = value; }
+        }
         IIdField IIdRow.IdField
         {
             get { return Fields.UserId; }
@@ -132,6 +146,8 @@ namespace Serene.Administration.Entities
             public StringField UserImage;
             public DateTimeField LastDirectoryUpdate;
             public Int16Field IsActive;
+            public Int32Field TenantId;
+            public StringField TenantName;
 
             public StringField Password;
             public StringField PasswordConfirm;
