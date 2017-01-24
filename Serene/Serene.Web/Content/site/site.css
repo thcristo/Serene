@@ -7481,35 +7481,3 @@ section.content > .s-DataGrid {
   width: 45%;
   float: right;
 }
-.s-MovieDB-MovieDialog > .size {
-  width: 650px;
-  height: 500px;
-}
-.s-MovieDB-MovieDialog .caption {
-  width: 150px;
-}
-.s-MovieDB-GenreDialog > .size {
-  width: 650px;
-}
-.s-MovieDB-GenreDialog .caption {
-  width: 150px;
-}
-.s-MovieDB-PersonDialog > .size {
-  width: 600px;
-  height: 600px;
-}
-.s-MovieDB-PersonDialog .caption {
-  width: 150px;
-}
-.s-MovieDB-PersonDialog .s-PersonMovieGrid > .grid-container {
-  height: 500px;
-}
-.s-MovieDB-MovieCastEditDialog > .size {
-  width: 450px;
-}
-.s-MovieDB-MovieCastEditDialog .caption {
-  width: 120px;
-}
-.s-MovieDB-MovieCastEditDialog .s-PropertyGrid .categories {
-  height: 120px;
-}

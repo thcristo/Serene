@@ -82,25 +82,6 @@ namespace MVC
                     public const string AccountSignUp_AdminLTE = "~/Modules/Membership/Account/SignUp/AccountSignUp.AdminLTE.cshtml";
                 }
             }
-
-        }
-
-        public static class MovieDB
-        {
-            public static class Genre
-            {
-                public const string GenreIndex = "~/Modules/MovieDB/Genre/GenreIndex.cshtml";
-            }
-
-            public static class Movie
-            {
-                public const string MovieIndex = "~/Modules/MovieDB/Movie/MovieIndex.cshtml";
-            }
-
-            public static class Person
-            {
-                public const string PersonIndex = "~/Modules/MovieDB/Person/PersonIndex.cshtml";
-            }
         }
 
         public static class Shared

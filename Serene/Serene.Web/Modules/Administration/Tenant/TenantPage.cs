@@ -1,7 +1,4 @@
 ﻿
-
-[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "Administration/Tenant", typeof(Serene.Administration.Pages.TenantController))]
-
 namespace Serene.Administration.Pages
 {
     using Serenity;
