@@ -13,7 +13,7 @@ namespace Serene.MovieDB.Entities
     [ConnectionKey("Default"), DisplayName("Movies"), InstanceName("Movie"), TwoLevelCached]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
-    public sealed class MovieRow : Row, IIdRow, INameRow
+    public sealed class MovieRow : Row, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Movie Id"), Column("MOVIE_ID"), Identity]
         public Int32? MovieId
@@ -104,6 +104,13 @@ namespace Serene.MovieDB.Entities
             set { Fields.GalleryImages[this] = value; }
         }
 
+        [Column("TENANT_ID"), Insertable(false), Updatable(false)]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+        
         IIdField IIdRow.IdField
         {
             get { return Fields.MovieId; }
@@ -112,6 +119,14 @@ namespace Serene.MovieDB.Entities
         StringField INameRow.NameField
         {
             get { return Fields.Title; }
+        }
+
+        public Int32Field TenantIdField
+        {
+            get
+            {
+                return Fields.TenantId;
+            }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
@@ -135,6 +150,7 @@ namespace Serene.MovieDB.Entities
             public RowListField<MovieCastRow> CastList;
             public StringField PrimaryImage;
             public StringField GalleryImages;
+            public Int32Field TenantId;
 
             public RowFields()
                 : base("MOVIE","MovieDB")

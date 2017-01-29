@@ -12,6 +12,7 @@
         CastList?: MovieCastRow[];
         PrimaryImage?: string;
         GalleryImages?: string;
+        TenantId?: number;
     }
 
     export namespace MovieRow {
@@ -32,9 +33,10 @@
             export declare const CastList: string;
             export declare const PrimaryImage: string;
             export declare const GalleryImages: string;
+            export declare const TenantId: string;
         }
 
-        ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList', 'CastList', 'PrimaryImage', 'GalleryImages'].forEach(x => (<any>Fields)[x] = x);
+        ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList', 'CastList', 'PrimaryImage', 'GalleryImages', 'TenantId'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

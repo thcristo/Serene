@@ -1622,7 +1622,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = RoleRow.Fields || (RoleRow.Fields = {}));
-            ['RoleId', 'RoleName'].forEach(function (x) { return Fields[x] = x; });
+            ['RoleId', 'RoleName', 'TenantId'].forEach(function (x) { return Fields[x] = x; });
         })(RoleRow = Administration.RoleRow || (Administration.RoleRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -1992,7 +1992,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = GenreRow.Fields || (GenreRow.Fields = {}));
-            ['GenreId', 'Name'].forEach(function (x) { return Fields[x] = x; });
+            ['GenreId', 'Name', 'TenantId'].forEach(function (x) { return Fields[x] = x; });
         })(GenreRow = MovieDB.GenreRow || (MovieDB.GenreRow = {}));
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
@@ -2118,7 +2118,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MovieRow.Fields || (MovieRow.Fields = {}));
-            ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList', 'CastList', 'PrimaryImage', 'GalleryImages'].forEach(function (x) { return Fields[x] = x; });
+            ['MovieId', 'Title', 'Description', 'Storyline', 'ReleaseYear', 'ReleaseDate', 'Runtime', 'Kind', 'GenreList', 'CastList', 'PrimaryImage', 'GalleryImages', 'TenantId'].forEach(function (x) { return Fields[x] = x; });
         })(MovieRow = MovieDB.MovieRow || (MovieDB.MovieRow = {}));
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));
@@ -2172,7 +2172,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = PersonRow.Fields || (PersonRow.Fields = {}));
-            ['PersonId', 'Firstname', 'Lastname', 'Fullname', 'Birthdate', 'Birthplace', 'Gender', 'Height', 'PrimaryImage', 'GalleryImages'].forEach(function (x) { return Fields[x] = x; });
+            ['PersonId', 'Firstname', 'Lastname', 'Fullname', 'Birthdate', 'Birthplace', 'Gender', 'Height', 'PrimaryImage', 'GalleryImages', 'TenantId'].forEach(function (x) { return Fields[x] = x; });
         })(PersonRow = MovieDB.PersonRow || (MovieDB.PersonRow = {}));
     })(MovieDB = Serene.MovieDB || (Serene.MovieDB = {}));
 })(Serene || (Serene = {}));

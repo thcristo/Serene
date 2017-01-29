@@ -2,6 +2,7 @@
     export interface RoleRow {
         RoleId?: number;
         RoleName?: string;
+        TenantId?: number;
     }
 
     export namespace RoleRow {
@@ -17,9 +18,10 @@
         export namespace Fields {
             export declare const RoleId: string;
             export declare const RoleName: string;
+            export declare const TenantId: string;
         }
 
-        ['RoleId', 'RoleName'].forEach(x => (<any>Fields)[x] = x);
+        ['RoleId', 'RoleName', 'TenantId'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

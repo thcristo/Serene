@@ -13,7 +13,7 @@ namespace Serene.MovieDB.Entities
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     [LookupScript("MovieDB.Person")]
-    public sealed class PersonRow : Row, IIdRow, INameRow
+    public sealed class PersonRow : Row, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Person Id"), Column("PERSON_ID"), Identity]
         public Int32? PersonId
@@ -88,6 +88,13 @@ namespace Serene.MovieDB.Entities
             set { Fields.GalleryImages[this] = value; }
         }
 
+        [Column("TENANT_ID"), Insertable(false), Updatable(false)]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.PersonId; }
@@ -96,6 +103,14 @@ namespace Serene.MovieDB.Entities
         StringField INameRow.NameField
         {
             get { return Fields.Fullname; }
+        }
+
+        public Int32Field TenantIdField
+        {
+            get
+            {
+                return Fields.TenantId;
+            }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
@@ -117,6 +132,7 @@ namespace Serene.MovieDB.Entities
             public Int32Field Height;
             public StringField PrimaryImage;
             public StringField GalleryImages;
+            public Int32Field TenantId;
 
             public RowFields()
                 : base("PERSON","MovieDB")

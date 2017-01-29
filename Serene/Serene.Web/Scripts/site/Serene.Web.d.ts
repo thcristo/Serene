@@ -422,6 +422,7 @@ declare namespace Serene.Administration {
     interface RoleRow {
         RoleId?: number;
         RoleName?: string;
+        TenantId?: number;
     }
     namespace RoleRow {
         const idProperty = "RoleId";
@@ -432,6 +433,7 @@ declare namespace Serene.Administration {
         namespace Fields {
             const RoleId: string;
             const RoleName: string;
+            const TenantId: string;
         }
     }
 }
@@ -902,6 +904,7 @@ declare namespace Serene.MovieDB {
     interface GenreRow {
         GenreId?: number;
         Name?: string;
+        TenantId?: number;
     }
     namespace GenreRow {
         const idProperty = "GenreId";
@@ -912,6 +915,7 @@ declare namespace Serene.MovieDB {
         namespace Fields {
             const GenreId: string;
             const Name: string;
+            const TenantId: string;
         }
     }
 }
@@ -1080,6 +1084,7 @@ declare namespace Serene.MovieDB {
         CastList?: MovieCastRow[];
         PrimaryImage?: string;
         GalleryImages?: string;
+        TenantId?: number;
     }
     namespace MovieRow {
         const idProperty = "MovieId";
@@ -1098,6 +1103,7 @@ declare namespace Serene.MovieDB {
             const CastList: string;
             const PrimaryImage: string;
             const GalleryImages: string;
+            const TenantId: string;
         }
     }
 }
@@ -1149,6 +1155,7 @@ declare namespace Serene.MovieDB {
         Height?: number;
         PrimaryImage?: string;
         GalleryImages?: string;
+        TenantId?: number;
     }
     namespace PersonRow {
         const idProperty = "PersonId";
@@ -1167,6 +1174,7 @@ declare namespace Serene.MovieDB {
             const Height: string;
             const PrimaryImage: string;
             const GalleryImages: string;
+            const TenantId: string;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Serene.MovieDB.Entities
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     [LookupScript("MovieDB.Genre")]
-    public sealed class GenreRow : Row, IIdRow, INameRow
+    public sealed class GenreRow : Row, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Genre Id"), Column("GENRE_ID"), Identity]
         public Int32? GenreId
@@ -29,6 +29,13 @@ namespace Serene.MovieDB.Entities
             set { Fields.Name[this] = value; }
         }
 
+        [Column("TENANT_ID"), Insertable(false), Updatable(false)]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.GenreId; }
@@ -37,6 +44,14 @@ namespace Serene.MovieDB.Entities
         StringField INameRow.NameField
         {
             get { return Fields.Name; }
+        }
+
+        public Int32Field TenantIdField
+        {
+            get
+            {
+                return Fields.TenantId;
+            }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
@@ -50,6 +65,7 @@ namespace Serene.MovieDB.Entities
         {
             public Int32Field GenreId;
             public StringField Name;
+            public Int32Field TenantId;
 
             public RowFields()
                 : base("GENRE","MovieDB")
