@@ -11,7 +11,7 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Languages"), InstanceName("Language"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Translation)]
     [ModifyPermission(PermissionKeys.Translation)]
-    public sealed class LanguageRow : Row, IIdRow, INameRow
+    public sealed class LanguageRow : Row, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity]
         public Int32? Id
@@ -34,6 +34,13 @@ namespace Serene.Administration.Entities
             set { Fields.LanguageName[this] = value; }
         }
 
+        [Column("TENANT_ID"), Insertable(false), Updatable(false)]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.Id; }
@@ -42,6 +49,14 @@ namespace Serene.Administration.Entities
         StringField INameRow.NameField
         {
             get { return Fields.LanguageName; }
+        }
+
+        public Int32Field TenantIdField
+        {
+            get
+            {
+                return Fields.TenantId;
+            }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
@@ -56,7 +71,7 @@ namespace Serene.Administration.Entities
             public Int32Field Id;
             public StringField LanguageId;
             public StringField LanguageName;
-
+            public Int32Field TenantId;
             public RowFields()
                 : base("Languages", "Administration")
             {

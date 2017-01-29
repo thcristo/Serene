@@ -1700,6 +1700,7 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberHelper.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberRequest.cs" />
+    <Compile Include="Modules\MovieDB\MovieDBPermissionKeys.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieKind.cs" />
     <Compile Include="Modules\MovieDB\Movie\MovieListRequest.cs" />
     <Compile Include="Modules\MovieDB\Person\Gender.cs" />

@@ -1,6 +1,7 @@
 ﻿
 namespace Serene.MovieDB.Entities
 {
+    using Modules.MovieDB;
     using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
@@ -10,8 +11,8 @@ namespace Serene.MovieDB.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Genres"), InstanceName("Genre"), TwoLevelCached]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(MovieDBPermissionKeys.Administration)]
+    [ModifyPermission(MovieDBPermissionKeys.Administration)]
     [LookupScript("MovieDB.Genre")]
     public sealed class GenreRow : Row, IIdRow, INameRow, IMultiTenantRow
     {

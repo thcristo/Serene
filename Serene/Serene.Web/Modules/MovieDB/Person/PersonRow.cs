@@ -1,6 +1,7 @@
 ﻿
 namespace Serene.MovieDB.Entities
 {
+    using Modules.MovieDB;
     using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
@@ -10,8 +11,8 @@ namespace Serene.MovieDB.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Persons"), InstanceName("Person"), TwoLevelCached]
-    [ReadPermission("Administration:General")]
-    [ModifyPermission("Administration:General")]
+    [ReadPermission(MovieDBPermissionKeys.Administration)]
+    [ModifyPermission(MovieDBPermissionKeys.Administration)]
     [LookupScript("MovieDB.Person")]
     public sealed class PersonRow : Row, IIdRow, INameRow, IMultiTenantRow
     {

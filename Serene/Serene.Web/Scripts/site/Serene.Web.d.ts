@@ -328,6 +328,7 @@ declare namespace Serene.Administration {
         Id?: number;
         LanguageId?: string;
         LanguageName?: string;
+        TenantId?: number;
     }
     namespace LanguageRow {
         const idProperty = "Id";
@@ -339,6 +340,7 @@ declare namespace Serene.Administration {
             const Id: string;
             const LanguageId: string;
             const LanguageName: string;
+            const TenantId: string;
         }
     }
 }

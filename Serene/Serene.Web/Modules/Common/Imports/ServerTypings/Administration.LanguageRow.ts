@@ -3,6 +3,7 @@
         Id?: number;
         LanguageId?: string;
         LanguageName?: string;
+        TenantId?: number;
     }
 
     export namespace LanguageRow {
@@ -19,9 +20,10 @@
             export declare const Id: string;
             export declare const LanguageId: string;
             export declare const LanguageName: string;
+            export declare const TenantId: string;
         }
 
-        ['Id', 'LanguageId', 'LanguageName'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'LanguageId', 'LanguageName', 'TenantId'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 
