@@ -1627,6 +1627,7 @@
     <Compile Include="Modules\Administration\AdministrationPermissionKeys.cs" />
     <Compile Include="Modules\Administration\Tenant\IMultiTenantRow.cs" />
     <Compile Include="Modules\Administration\Tenant\MultiTenantBehavior.cs" />
+    <Compile Include="Modules\Administration\Tenant\MultiTenantLookupScript.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionListRequest.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionUpdateRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleUpdateRequest.cs" />
