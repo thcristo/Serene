@@ -1535,7 +1535,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = LanguageRow.Fields || (LanguageRow.Fields = {}));
-            ['Id', 'LanguageId', 'LanguageName'].forEach(function (x) { return Fields[x] = x; });
+            ['Id', 'LanguageId', 'LanguageName', 'TenantId'].forEach(function (x) { return Fields[x] = x; });
         })(LanguageRow = Administration.LanguageRow || (Administration.LanguageRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
