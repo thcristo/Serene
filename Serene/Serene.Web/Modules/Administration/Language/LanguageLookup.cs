@@ -7,7 +7,7 @@ namespace Serene.Administration
     using Serenity.Web;
 
     [LookupScript("Administration.Language")]
-    public sealed class LanguageLookup : RowLookupScript<LanguageRow>
+    public sealed class LanguageLookup : MultiTenantRowLookupScript<LanguageRow>
     {
         public LanguageLookup()
         {

@@ -10,7 +10,7 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Roles"), InstanceName("Role"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
-    [LookupScript("Administration.Role")]
+    
     public sealed class RoleRow : Row, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId", "Administration"), LeftJoin("jRole")]
